@@ -4,14 +4,15 @@ import javax.swing.JPanel;
 public class login {
 
         public static void createAndShowLoginGUI() {
-        JFrame loginFrame = new JFrame("로그인");
-        loginFrame.setSize(300, 150);
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame frame = new JFrame("로그인");
+        frame.setSize(300, 150);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel panel = new JPanel();
-        loginFrame.add(panel);
+        frame.add(panel);
         LoginPanel.placeComponents(panel);
-
-        loginFrame.setVisible(true);
+        
+        frame.setLocationRelativeTo(null); // 창을 화면 중앙에 배치    
+        frame.setVisible(true);
     }
 }

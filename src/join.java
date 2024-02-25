@@ -5,14 +5,15 @@ import java.awt.event.ActionListener;
 public class join {
     
     public static void createAndShowMainGUI() {
-        JFrame frame = new JFrame("주민 관리 프로그램");
-        frame.setSize(500, 500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame frame = new JFrame("회원가입");
+        frame.setSize(350, 340);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel panel = new JPanel();
         frame.add(panel);
         placeComponents(panel);
-
+        
+        frame.setLocationRelativeTo(null); // 창을 화면 중앙에 배치
         frame.setVisible(true);
     }
 
@@ -20,7 +21,7 @@ public class join {
         panel.setLayout(null);
 
         // 아이디 입력 필드
-        JLabel idLabel = new JLabel("아이디:");
+        JLabel idLabel = new JLabel("아이디");
         idLabel.setBounds(10, 20, 80, 25);
         panel.add(idLabel);
         JTextField idField = new JTextField(20);
@@ -28,7 +29,7 @@ public class join {
         panel.add(idField);
 
         // 비밀번호 입력 필드
-        JLabel passwordLabel = new JLabel("비밀번호:");
+        JLabel passwordLabel = new JLabel("비밀번호");
         passwordLabel.setBounds(10, 50, 80, 25);
         panel.add(passwordLabel);
         JPasswordField passwordField = new JPasswordField(20);
@@ -36,15 +37,15 @@ public class join {
         panel.add(passwordField);
 
         // 비밀번호 확인 입력 필드
-        JLabel confirmPasswordLabel = new JLabel("비밀번호 확인:");
+        JLabel confirmPasswordLabel = new JLabel("비밀번호 확인");
         confirmPasswordLabel.setBounds(10, 80, 120, 25);
         panel.add(confirmPasswordLabel);
         JPasswordField confirmPasswordField = new JPasswordField(20);
-        confirmPasswordField.setBounds(130, 80, 200, 25);
+        confirmPasswordField.setBounds(100, 80, 200, 25);
         panel.add(confirmPasswordField);
 
         // 이름 입력 필드
-        JLabel nameLabel = new JLabel("이름:");
+        JLabel nameLabel = new JLabel("세대주 이름");
         nameLabel.setBounds(10, 110, 80, 25);
         panel.add(nameLabel);
         JTextField nameField = new JTextField(20);
@@ -52,33 +53,41 @@ public class join {
         panel.add(nameField);
 
         // 호수 입력 필드
-        JLabel floorLabel = new JLabel("호수:");
+        JLabel floorLabel = new JLabel("호수");
         floorLabel.setBounds(10, 140, 80, 25);
         panel.add(floorLabel);
         JTextField floorField = new JTextField(20);
         floorField.setBounds(100, 140, 200, 25);
         panel.add(floorField);
 
-        // 휴대폰 번호 입력 필드
-        JLabel phoneLabel = new JLabel("휴대폰 번호:");
-        phoneLabel.setBounds(10, 170, 80, 25);
-        panel.add(phoneLabel);
-        JTextField phoneField = new JTextField(20);
-        phoneField.setBounds(100, 170, 200, 25);
-        panel.add(phoneField);
+       // 구성원 이름 입력 필드
+       JLabel memberNameLabel = new JLabel("구성원 이름");
+       memberNameLabel.setBounds(10, 170, 80, 25);
+       panel.add(memberNameLabel);
+       JTextField memberNameField = new JTextField(20);
+       memberNameField.setBounds(100, 170, 200, 25);
+       panel.add(memberNameField);
 
-        // 이메일 주소 입력 필드
-        JLabel emailLabel = new JLabel("이메일 주소:");
-        emailLabel.setBounds(10, 200, 80, 25);
-        panel.add(emailLabel);
-        JTextField emailField = new JTextField(20);
-        emailField.setBounds(100, 200, 200, 25);
-        panel.add(emailField);
+       // 휴대폰 번호 입력 필드
+       JLabel phoneLabel = new JLabel("휴대폰 번호");
+       phoneLabel.setBounds(10, 200, 80, 25);
+       panel.add(phoneLabel);
+       JTextField phoneField = new JTextField(20);
+       phoneField.setBounds(100, 200, 200, 25);
+       panel.add(phoneField);
 
-        // 회원가입 버튼
-        JButton signUpButton = new JButton("회원가입");
-        signUpButton.setBounds(10, 230, 120, 25);
-        panel.add(signUpButton);
+       // 이메일 주소 입력 필드
+       JLabel emailLabel = new JLabel("이메일 주소");
+       emailLabel.setBounds(10, 230, 80, 25);
+       panel.add(emailLabel);
+       JTextField emailField = new JTextField(20);
+       emailField.setBounds(100, 230, 200, 25);
+       panel.add(emailField);
+
+       // 회원가입 버튼
+       JButton signUpButton = new JButton("회원가입");
+       signUpButton.setBounds(10, 260, 120, 25);
+       panel.add(signUpButton);
 
         // 회원가입 버튼에 대한 액션 리스너 추가
         signUpButton.addActionListener(new ActionListener() {
