@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class feeInput {
+public class FeeInput {
     public static void createAndShowGUI() {
         JFrame frame = new JFrame("관리비 입력");
         frame.setSize(400, 300);
@@ -120,6 +120,6 @@ public class feeInput {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(feeInput::createAndShowGUI);
+        SwingUtilities.invokeLater(FeeInput::createAndShowGUI);
     }
 }

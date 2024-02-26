@@ -13,7 +13,7 @@ public class MaintenanceRequestManager extends JFrame {
     private JButton addButton;
 
     public MaintenanceRequestManager() {
-        setTitle("Maintenance Request Manager");
+        setTitle("수리 & 정비 요청");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -29,13 +29,13 @@ public class MaintenanceRequestManager extends JFrame {
 
         // 요청 추가 필드 및 버튼
         JPanel inputPanel = new JPanel(new GridLayout(3, 2));
-        inputPanel.add(new JLabel("Name:"));
+        inputPanel.add(new JLabel("이름:"));
         nameField = new JTextField();
         inputPanel.add(nameField);
-        inputPanel.add(new JLabel("Issue:"));
+        inputPanel.add(new JLabel("메시지:"));
         issueField = new JTextField();
         inputPanel.add(issueField);
-        addButton = new JButton("Add Request");
+        addButton = new JButton("요청");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,7 +47,7 @@ public class MaintenanceRequestManager extends JFrame {
                     updateRequestTextArea();
                     clearInputFields();
                 } else {
-                    JOptionPane.showMessageDialog(panel, "Please enter name and issue.");
+                    JOptionPane.showMessageDialog(panel, "수리 & 정비를 요청할 정보를 입력하세요.");
                 }
             }
         });
@@ -60,8 +60,8 @@ public class MaintenanceRequestManager extends JFrame {
     private void updateRequestTextArea() {
         StringBuilder sb = new StringBuilder();
         for (MaintenanceRequest request : requestList) {
-            sb.append("Name: ").append(request.getName()).append("\n");
-            sb.append("Issue: ").append(request.getIssue()).append("\n\n");
+            sb.append("이름: ").append(request.getName()).append("\n");
+            sb.append("메시지: ").append(request.getIssue()).append("\n\n");
         }
         requestTextArea.setText(sb.toString());
     }

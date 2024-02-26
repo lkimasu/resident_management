@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class join {
+public class Join {
     
     public static void createAndShowMainGUI() {
         JFrame frame = new JFrame("회원가입");

@@ -5,7 +5,7 @@ import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-public class sendNotification {
+public class SendNotification {
 
     public static void createAndShowGUI() {
         JFrame frame = new JFrame("메일 보내기");

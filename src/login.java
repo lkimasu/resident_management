@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class login {
+public class Login {
 
         public static void createAndShowLoginGUI() {
         JFrame frame = new JFrame("로그인");

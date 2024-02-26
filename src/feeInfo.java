@@ -3,7 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class feeInfo {
+public class FeeInfo {
     public static void createAndShowGUI() {
         JFrame frame = new JFrame("관리비 정보 확인");
         frame.setSize(800, 600);
@@ -104,6 +104,6 @@ public class feeInfo {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(feeInfo::createAndShowGUI);
+        SwingUtilities.invokeLater(FeeInfo::createAndShowGUI);
     }
 }

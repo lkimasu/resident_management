@@ -3,7 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class residentInfo {
+public class ResidentInfo {
     public static void createAndShowGUI() {
         JFrame frame = new JFrame("주민정보 검색");
         frame.setSize(800, 600);
@@ -97,6 +97,6 @@ public class residentInfo {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(residentInfo::createAndShowGUI);
+        SwingUtilities.invokeLater(ResidentInfo::createAndShowGUI);
     }
 }

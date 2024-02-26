@@ -43,7 +43,7 @@ public class LoginPanel {
 
         joinButton.addActionListener(e -> {
         
-                join.createAndShowMainGUI(); // 회원가입 버튼
+                Join.createAndShowMainGUI(); // 회원가입 버튼
         });
         panel.add(joinButton);
 

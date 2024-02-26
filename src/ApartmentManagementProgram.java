@@ -29,7 +29,7 @@ public class ApartmentManagementProgram {
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                join.createAndShowMainGUI();
+                Join.createAndShowMainGUI();
             }
         });
 
@@ -43,7 +43,7 @@ public class ApartmentManagementProgram {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                residentInfo.createAndShowGUI();
+                ResidentInfo.createAndShowGUI();
             }
 
         });
@@ -57,7 +57,7 @@ public class ApartmentManagementProgram {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                feeInput.createAndShowGUI();
+                FeeInput.createAndShowGUI();
             }
         });
         panel.add(feeInputButton);
@@ -71,7 +71,7 @@ public class ApartmentManagementProgram {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                feeInfo.createAndShowGUI();
+                FeeInfo.createAndShowGUI();
             }
 
         });
@@ -86,7 +86,7 @@ public class ApartmentManagementProgram {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                sendNotification.createAndShowGUI();
+                SendNotification.createAndShowGUI();
             }
 
         });
