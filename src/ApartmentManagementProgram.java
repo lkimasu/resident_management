@@ -81,8 +81,7 @@ public class ApartmentManagementProgram {
         // 알림 보내기 버튼
         JButton sendNotificationButton = new JButton("알림 보내기");
         sendNotificationButton.setBounds(10, 60, 120, 25);
-        panel.add(sendNotificationButton);
-
+        
         sendNotificationButton.addActionListener(new ActionListener(){
 
             @Override
@@ -92,11 +91,21 @@ public class ApartmentManagementProgram {
 
         });
 
+        panel.add(sendNotificationButton);
 
-        // 시설예약 버튼
-        JButton facilityButton = new JButton("시설예약");
-        facilityButton.setBounds(140, 60, 120, 25);
-        panel.add(facilityButton);
+        // 정비 & 수리요청
+        JButton MaintenanceButton = new JButton("정비&수리 요청");
+        MaintenanceButton.setBounds(140, 60, 120, 25);
+
+        MaintenanceButton.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MaintenanceRequestManager.createAndShowGUI();
+            }
+
+        });
+        panel.add(MaintenanceButton);
     }
 
     public static void main(String[] args) {
