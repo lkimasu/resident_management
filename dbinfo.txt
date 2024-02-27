@@ -10,3 +10,13 @@ phone varchar(12) NOT NULL,
 email varchar(30) NOT NULL
 );
 
+create table fee
+(
+id INT PRIMARY KEY AUTO_INCREMENT,
+apartment_number varchar(12) NOT NULL,
+electricity_fee varchar(12) NOT NULL,
+water_fee varchar(12) NOT NULL,
+gas_fee varchar(12) NOT NULL,
+security_fee varchar(12) NOT NULL,
+days date 
+);
