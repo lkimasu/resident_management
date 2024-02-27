@@ -131,8 +131,8 @@ public class Join {
                         statement.setString(1, id);
                         statement.setString(2, password);
                         statement.setString(3, name);
-                        statement.setString(4, member);
-                        statement.setString(5, floor);
+                        statement.setString(4, floor);
+                        statement.setString(5, member);
                         statement.setString(6, phone);
                         statement.setString(7, email);
                         int rowsInserted = statement.executeUpdate();
