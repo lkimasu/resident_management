@@ -1,6 +1,13 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public class Join {
     
@@ -93,11 +100,13 @@ public class Join {
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 아이디, 비밀번호, 이름, 호수, 휴대폰 번호, 이메일 주소가 모두 입력되었는지 확인
+
+                //입력한 값 불러오기
                 String id = idField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 String confirmPassword = String.valueOf(confirmPasswordField.getPassword());
                 String name = nameField.getText();
+                String member = memberNameField.getText();
                 String floor = floorField.getText();
                 String phone = phoneField.getText();
                 String email = emailField.getText();
@@ -107,11 +116,40 @@ public class Join {
                 } else if (!password.equals(confirmPassword)) {
                     JOptionPane.showMessageDialog(panel, "비밀번호와 비밀번호 확인이 일치하지 않습니다.", "경고", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    // 회원가입 로직 처리
-                    // 여기에서 입력된 데이터를 처리하는 로직을 추가할 수 있습니다.
-                    // 예: 데이터베이스에 회원 정보를 저장하는 등의 작업을 수행합니다.
-                    // 이 부분을 실제 회원가입 로직으로 대체해주세요.
-                    JOptionPane.showMessageDialog(panel, "회원가입이 완료되었습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
+                    Connection conn = null;
+                    PreparedStatement statement = null;
+                    try {
+                        Properties props = new Properties();
+                        props.load(new FileInputStream("src/database.properties"));
+                        String url = props.getProperty("db.url");
+                        String user = props.getProperty("db.user");
+                        String pass = props.getProperty("db.userpassword");
+
+                        conn = DriverManager.getConnection(url, user, pass);
+                        String sql = "INSERT INTO user_join (user_id, pw, name, apartment_number, member_name, phone,email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                        statement = conn.prepareStatement(sql);
+                        statement.setString(1, id);
+                        statement.setString(2, password);
+                        statement.setString(3, name);
+                        statement.setString(4, member);
+                        statement.setString(5, floor);
+                        statement.setString(6, phone);
+                        statement.setString(7, email);
+                        int rowsInserted = statement.executeUpdate();
+                        if (rowsInserted > 0) {
+                            JOptionPane.showMessageDialog(panel, "회원가입이 완료되었습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        } catch (SQLException | IOException ex) {
+                        JOptionPane.showMessageDialog(panel, "회원가입 중 오류가 발생했습니다: " + ex.getMessage(), "오류", JOptionPane.ERROR_MESSAGE);
+                        ex.printStackTrace();
+                    } finally {
+                        try {
+                            if (statement != null) statement.close();
+                            if (conn != null) conn.close();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
             }
         });

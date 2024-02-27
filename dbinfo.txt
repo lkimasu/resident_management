@@ -1,0 +1,12 @@
+create table user_join
+(
+id INT PRIMARY KEY AUTO_INCREMENT,
+user_id varchar(12) NOT NULL,
+pw varchar(12) NOT NULL,
+name varchar(12) NOT NULL,
+apartment_number varchar(12) NOT NULL,
+member_name varchar(12),
+phone varchar(12) NOT NULL,
+email varchar(30) NOT NULL
+);
+
