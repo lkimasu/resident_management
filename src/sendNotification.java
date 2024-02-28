@@ -72,8 +72,8 @@ public class SendNotification {
                 // Gmail SMTP 서버 설정
                 String host = "smtp.gmail.com";
                 String port = "587";
-                String username = "your-email@gmail.com"; // 본인의 Gmail 주소
-                String password = "your-password"; // 본인의 Gmail 앱 비밀번호
+                String username = "test@gmail.com"; // 본인의 Gmail 주소
+                String password = "test"; // 본인의 Gmail 앱 비밀번호
 
                 // SMTP 서버 속성 설정
                 Properties props = new Properties();
@@ -81,6 +81,7 @@ public class SendNotification {
                 props.put("mail.smtp.port", port);
                 props.put("mail.smtp.auth", "true");
                 props.put("mail.smtp.starttls.enable", "true");
+                props.put("mail.debug", "true");
 
                 // 세션 생성
                 Session session = Session.getInstance(props, new Authenticator() {
