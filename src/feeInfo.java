@@ -33,7 +33,7 @@ public class FeeInfo {
 
         // 검색 조건 선택을 위한 콤보박스 추가
         comboBox = new JComboBox<>();
-        comboBox.addItem("연월");
+        comboBox.addItem("년월일");
         comboBox.addItem("호수");
         comboBox.setBounds(10, 20, 120, 25);
         panel.add(comboBox);
@@ -58,7 +58,7 @@ public class FeeInfo {
         JTable resultTable = new JTable(tableModel);
 
         // 컬럼 이름 설정
-        String[] columnNames = {"월", "호수", "전기세", "수도세", "가스비", "경비비", "합계"};
+        String[] columnNames = {"년월일", "호수", "전기세", "수도세", "가스비", "경비비", "합계"};
         tableModel.setColumnIdentifiers(columnNames);
 
         // 테이블을 스크롤 가능한 패널에 추가
@@ -99,7 +99,17 @@ public class FeeInfo {
                     // 테이블 모델에 검색 결과 추가
                     tableModel.setRowCount(0); // 기존 데이터 지우기
                     while (resultSet.next()) {
-                        Object[] rowData = {resultSet.getString("days"), resultSet.getString("apartment_number"), resultSet.getString("electricity_fee"), resultSet.getString("water_fee"), resultSet.getString("gas_fee"), resultSet.getString("security_fee")};
+                        String days = resultSet.getString("days");
+                        String apartment_number = resultSet.getString("apartment_number");
+                        String electricity_fee = resultSet.getString("electricity_fee");
+                        String water_fee = resultSet.getString("water_fee");
+                        String gas_fee = resultSet.getString("gas_fee");
+                        String security_fee = resultSet.getString("security_fee");
+        
+                        // 전기세, 수도세, 가스세, 경비비에 대한 총 합 계산
+                        int total = Integer.parseInt(electricity_fee) + Integer.parseInt(water_fee) + Integer.parseInt(gas_fee) + Integer.parseInt(security_fee);
+        
+                        Object[] rowData = {days, apartment_number, electricity_fee, water_fee, gas_fee, security_fee, total};
                         tableModel.addRow(rowData);
                     }
 
@@ -147,36 +157,36 @@ public class FeeInfo {
 
                 JPanel dialogPanel = new JPanel();
                 dialogPanel.setLayout(new BoxLayout(dialogPanel, BoxLayout.Y_AXIS));
-                dialogPanel.add(new JLabel("아이디:"));
+                dialogPanel.add(new JLabel("년월일"));
                 dialogPanel.add(datedField);
-                dialogPanel.add(new JLabel("세대주 이름:"));
-                dialogPanel.add(nameField);
-                dialogPanel.add(new JLabel("호수:"));
-                dialogPanel.add(apartmentNumberField);
-                dialogPanel.add(new JLabel("구성원 이름:"));
-                dialogPanel.add(memberNameField);
-                dialogPanel.add(new JLabel("휴대폰 번호:"));
-                dialogPanel.add(phoneField);
-                dialogPanel.add(new JLabel("이메일 주소:"));
-                dialogPanel.add(emailField);
+                dialogPanel.add(new JLabel("호수"));
+                dialogPanel.add(apartmentnumberField);
+                dialogPanel.add(new JLabel("전기세"));
+                dialogPanel.add(electricity_feeField);
+                dialogPanel.add(new JLabel("수도세"));
+                dialogPanel.add(water_feeField);
+                dialogPanel.add(new JLabel("가스세"));
+                dialogPanel.add(gas_feeField);
+                dialogPanel.add(new JLabel("경비비"));
+                dialogPanel.add(security_feeField);
 
                 int result = JOptionPane.showConfirmDialog(null, dialogPanel, "정보 수정", JOptionPane.OK_CANCEL_OPTION);
                 if (result == JOptionPane.OK_OPTION) {
                     // 사용자가 입력한 값 가져오기
-                    String newUserId = userIdField.getText();
-                    String newName = nameField.getText();
-                    String newApartmentNumber = apartmentNumberField.getText();
-                    String newMemberName = memberNameField.getText();
-                    String newPhone = phoneField.getText();
-                    String newEmail = emailField.getText();
+                    String newDate = datedField.getText();
+                    String newapartmentnumber = apartmentnumberField.getText();
+                    String newelectricity = electricity_feeField.getText();
+                    String newwater = water_feeField.getText();
+                    String newgas = gas_feeField.getText();
+                    String newsecurity = security_feeField.getText();
 
                     // 선택된 행의 데이터 업데이트
-                    tableModel.setValueAt(newUserId, selectedRow, 0);
-                    tableModel.setValueAt(newName, selectedRow, 1);
-                    tableModel.setValueAt(newApartmentNumber, selectedRow, 2);
-                    tableModel.setValueAt(newMemberName, selectedRow, 3);
-                    tableModel.setValueAt(newPhone, selectedRow, 4);
-                    tableModel.setValueAt(newEmail, selectedRow, 5);
+                    tableModel.setValueAt(newDate, selectedRow, 0);
+                    tableModel.setValueAt(newapartmentnumber, selectedRow, 1);
+                    tableModel.setValueAt(newelectricity, selectedRow, 2);
+                    tableModel.setValueAt(newwater, selectedRow, 3);
+                    tableModel.setValueAt(newgas, selectedRow, 4);
+                    tableModel.setValueAt(newsecurity, selectedRow, 5);
 
                     // 데이터베이스 업데이트 실행
                     try {
@@ -187,16 +197,16 @@ public class FeeInfo {
                         Connection conn = DriverManager.getConnection(url, user, pass);
 
                         // 선택된 행의 데이터를 업데이트하는 SQL 쿼리 실행
-                        String updateQuery = "UPDATE user_join SET user_id=?, name=?, apartment_number=?, member_name=?, phone=?, email=? WHERE user_id=?";
+                        String updateQuery = "UPDATE fee SET days=?, apartment_number=?, electricity_fee=?, water_fee=?, gas_fee=?, security_fee=? WHERE days=?";
                         PreparedStatement updateStatement = conn.prepareStatement(updateQuery);
-                        updateStatement.setString(1, newUserId);
-                        updateStatement.setString(2, newName);
-                        updateStatement.setString(3, newApartmentNumber);
-                        updateStatement.setString(4, newMemberName);
-                        updateStatement.setString(5, newPhone);
-                        updateStatement.setString(6, newEmail);
-                        updateStatement.setString(7, userId); // 이전 아이디로 업데이트
-
+                        updateStatement.setString(1, newDate);
+                        updateStatement.setString(2, newapartmentnumber);
+                        updateStatement.setString(3, newelectricity);
+                        updateStatement.setString(4, newwater);
+                        updateStatement.setString(5, newgas);
+                        updateStatement.setString(6, newsecurity);
+                        updateStatement.setString(7, date); // 이전 날짜로 업데이트
+        
                         updateStatement.executeUpdate();
 
                         // 리소스 해제
@@ -218,47 +228,48 @@ public class FeeInfo {
         panel.add(deleteButton);
 
         // 삭제 버튼에 대한 액션 리스너 추가
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow = resultTable.getSelectedRow();
-                if (selectedRow == -1) {
-                    JOptionPane.showMessageDialog(null, "삭제할 항목을 선택하세요.");
-                    return;
-                }
+     // 삭제 버튼에 대한 액션 리스너 추가
+deleteButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedRow = resultTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "삭제할 항목을 선택하세요.");
+            return;
+        }
 
-                // 선택된 행의 데이터 가져오기
-                String date = (String) tableModel.getValueAt(selectedRow, 0);
+        // 선택된 행의 데이터 가져오기
+        String date = (String) tableModel.getValueAt(selectedRow, 0);
 
-                // 데이터베이스에서 해당 항목 삭제
-                try {
-                    String url = props.getProperty("db.url");
-                    String user = props.getProperty("db.user");
-                    String pass = props.getProperty("db.userpassword");
+        // 데이터베이스에서 해당 항목 삭제
+        try {
+            String url = props.getProperty("db.url");
+            String user = props.getProperty("db.user");
+            String pass = props.getProperty("db.userpassword");
 
-                    Connection conn = DriverManager.getConnection(url, user, pass);
+            Connection conn = DriverManager.getConnection(url, user, pass);
 
-                    // 선택된 행의 데이터를 삭제하는 SQL 쿼리 실행
-                    String deleteQuery = "DELETE FROM fee WHERE days=?";
-                    PreparedStatement deleteStatement = conn.prepareStatement(deleteQuery);
-                    deleteStatement.setString(1, date);
+            // 선택된 행의 데이터를 삭제하는 SQL 쿼리 실행
+            String deleteQuery = "DELETE FROM fee WHERE days=?";
+            PreparedStatement deleteStatement = conn.prepareStatement(deleteQuery);
+            deleteStatement.setString(1, date);
 
-                    deleteStatement.executeUpdate();
+            deleteStatement.executeUpdate();
 
-                    // 리소스 해제
-                    deleteStatement.close();
-                    conn.close();
+            // 리소스 해제
+            deleteStatement.close();
+            conn.close();
 
-                    // 테이블 모델에서 해당 행 삭제
-                    tableModel.removeRow(selectedRow);
+            // 테이블 모델에서 해당 행 삭제
+            tableModel.removeRow(selectedRow);
 
-                    JOptionPane.showMessageDialog(null, "삭제가 성공적으로 완료되었습니다.");
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "데이터베이스 삭제 중 오류가 발생했습니다.");
-                }
-            }
-        });
+            JOptionPane.showMessageDialog(null, "삭제가 성공적으로 완료되었습니다.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "데이터베이스 삭제 중 오류가 발생했습니다.");
+        }
+    }
+});
     }
 
     public static void main(String[] args) {
