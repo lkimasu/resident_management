@@ -55,5 +55,5 @@ db.sql: 데이터베이스 테이블 스키마를 정의하는 파일입니다.
 
 문제가 발생하거나 추가적인 정보가 필요한 경우 이메일을 보내주세요: 
 
-wlstjd9000@gmail.com
+lwlstjdl@naver.com
 
