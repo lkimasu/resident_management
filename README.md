@@ -24,6 +24,8 @@ db.username=root
 
 db.password=password
 
+
+
 ## 사용 방법
 
 프로그램을 실행하면 다음과 같은 기능을 사용할 수 있습니다:
