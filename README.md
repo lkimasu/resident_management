@@ -17,7 +17,7 @@ MySQL 데이터베이스를 설치하고, resident과 같은 데이터베이스�
 database.properties 파일을 열어 MySQL 연결 정보를 수정하세요.
 
 예시:
-
+```java
 db.url=jdbc:mysql://localhost:3306/resident 
 
 db.username=root
