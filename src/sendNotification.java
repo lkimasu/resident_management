@@ -8,7 +8,7 @@ import javax.mail.internet.*;
 public class SendNotification {
 
     public static void createAndShowGUI() {
-        JFrame frame = new JFrame("메일 보내기");
+        JFrame frame = new JFrame("알림 보내기");
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

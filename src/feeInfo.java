@@ -16,7 +16,7 @@ public class FeeInfo {
     private static Properties props;
 
     public static void createAndShowGUI() {
-        JFrame frame = new JFrame("관리비 정보 확인");
+        JFrame frame = new JFrame("관리비 정보");
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

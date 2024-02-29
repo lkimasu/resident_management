@@ -15,7 +15,7 @@ public class ResidentInfo {
     private static Properties props;
 
     public static void createAndShowGUI() {
-        JFrame frame = new JFrame("주민정보 검색");
+        JFrame frame = new JFrame("주민정보");
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -273,11 +273,14 @@ public class ResidentInfo {
             // database.properties 파일 로드
             props = new Properties();
             props.load(new FileInputStream("src/database.properties"));
+    
+            // GUI 생성 및 표시
+            createAndShowGUI();
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "데이터베이스 연결 정보를 로드하는 중 오류가 발생했습니다.");
             System.exit(1);
         }
-        createAndShowGUI();
     }
+    
 }

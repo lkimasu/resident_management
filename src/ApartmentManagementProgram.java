@@ -4,8 +4,8 @@ import javax.swing.*;
 
 public class ApartmentManagementProgram {
     public static void createAndShowMainGUI() {
-        JFrame frame = new JFrame("메인화면");
-        frame.setSize(550, 250);
+        JFrame frame = new JFrame("주민관리 시스템");
+        frame.setSize(550, 150);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         JPanel panel = new JPanel();

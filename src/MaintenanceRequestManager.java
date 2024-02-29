@@ -16,7 +16,7 @@ public class MaintenanceRequestManager {
     private static Properties props;
 
     public static void createAndShowGUI() {
-        JFrame frame = new JFrame("수리 & 정비 요청");
+        JFrame frame = new JFrame("정비 & 수리 요청");
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
