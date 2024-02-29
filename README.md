@@ -43,12 +43,16 @@ db.password=password
 ## 파일 구조
 
 src/: 소스 코드 폴더
+
 lib/: 의존성 라이브러리 폴더
+
 database.properties: 데이터베이스 연결 정보 설정 파일
+
 db.sql: 데이터베이스 테이블 스키마를 정의하는 파일입니다.
 
 ## 연락처
 
 문제가 발생하거나 추가적인 정보가 필요한 경우 이메일을 보내주세요: 
+
 wlstjd9000@example.com
 
